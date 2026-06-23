@@ -169,7 +169,6 @@ export default function Register() {
           </div>
 
           <div className="md:col-span-2 mt-2">
-            <Link to='/login'>
              <button
               type="submit"
               disabled={loading}
@@ -177,7 +176,7 @@ export default function Register() {
             >
               {loading ? "Creating Account..." : "Create Account"}
             </button>
-            </Link>
+            
             
           </div>
         </form>
