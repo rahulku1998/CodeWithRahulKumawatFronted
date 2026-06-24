@@ -20,7 +20,8 @@ import Login from "./Pages/Login.jsx"
 import Register from "./Pages/Register.jsx"
 import Forget from "./Pages/ForgotPassword.jsx"
 import ResetPassword from "./Pages/ResetPassword.jsx"
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import './App.css'
 
@@ -50,6 +51,11 @@ function App() {
      <Route path="/reset-password/:token" element={<ResetPassword />} />
     </Routes>
     <Footer />
+    <ToastContainer
+    position="top-right"
+    autoClose={3000}
+    theme="dark"
+  />
     </>
   )
 }

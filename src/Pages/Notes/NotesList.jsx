@@ -124,133 +124,140 @@ const handleUpdate = async () => {
   }
 };
 
-
-
   return (
-    <div className="min-h-screen bg-slate-950 text-white py-16 px-6">
-      <div className="max-w-6xl mx-auto">
-        <Link
-          to="/notes"
-          className="text-blue-400"
-        >
-          ← Back
-        </Link>
+  <div className="min-h-screen overflow-x-hidden bg-slate-950 text-white py-10 md:py-16 px-4 sm:px-6">
+    <div className="max-w-6xl mx-auto">
 
-        <h1 className="text-5xl font-bold capitalize mt-4 mb-10">
-          {categorySlug.replace(/-/g, " ")} Notes
-        </h1>
-     <Helmet>
-      <title>
-        Notes List | CodeWithRahulKumawat
-      </title>
-     </Helmet>
+      {/* Back Button */}
+      <Link
+        to="/notes"
+        className="inline-flex items-center text-sm md:text-base text-blue-400 hover:text-blue-300 transition"
+      >
+        ← Back
+      </Link>
 
-     {isAdmin && (
-  <div className="bg-slate-900 p-6 rounded-2xl mb-10">
-    <h2 className="text-2xl font-bold mb-4">
-      {isEditing ? "Update Note" : "Create Note"}
-    </h2>
+      {/* Heading */}
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold capitalize mt-4 mb-8 md:mb-10 break-words">
+        {categorySlug.replace(/-/g, " ")} Notes
+      </h1>
 
-    <div className="grid gap-3">
-      <input
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Title"
-        value={form.title}
-        onChange={(e) =>
-          setForm({ ...form, title: e.target.value })
-        }
-      />
+      <Helmet>
+        <title>
+          Notes List | CodeWithRahulKumawat
+        </title>
+      </Helmet>
 
-      <input
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Category"
-        value={form.category}
-        onChange={(e) =>
-          setForm({ ...form, category: e.target.value })
-        }
-      />
+      {/* Admin Form */}
+      {isAdmin && (
+        <div className="bg-slate-900 p-4 md:p-6 rounded-2xl md:rounded-3xl mb-8 md:mb-10">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">
+            {isEditing ? "Update Note" : "Create Note"}
+          </h2>
 
-      <textarea
-        rows={6}
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Description"
-        value={form.description}
-        onChange={(e) =>
-          setForm({
-            ...form,
-            description: e.target.value,
-          })
-        }
-      />
+          <div className="grid gap-3">
 
-      <input
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Resource Link"
-        value={form.link}
-        onChange={(e) =>
-          setForm({ ...form, link: e.target.value })
-        }
-      />
+            <input
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Title"
+              value={form.title}
+              onChange={(e) =>
+                setForm({ ...form, title: e.target.value })
+              }
+            />
 
-      {isEditing ? (
-        <button
-          onClick={handleUpdate}
-          className="bg-yellow-500 p-3 rounded"
-        >
-          Update Note
-        </button>
-      ) : (
-        <button
-          onClick={handleCreate}
-          className="bg-green-600 p-3 rounded"
-        >
-          Create Note
-        </button>
-      )}
-    </div>
-  </div>
-)}
-        <div className="space-y-5">
-          {notes.map((note) => (
-            <Link
-              key={note._id}
-              to={`/notes/${note.categorySlug}/${note.slug}`}
-              className="block bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-blue-500 transition"
-            >
-              <h2 className="text-2xl font-semibold">
-                {note.title}
-              </h2>
+            <input
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Category"
+              value={form.category}
+              onChange={(e) =>
+                setForm({ ...form, category: e.target.value })
+              }
+            />
 
-              <p className="text-slate-400 mt-2">
-                Open detailed notes →
-              </p>
-              {isAdmin && (
-  <div className="flex gap-3 mt-4">
-    <button
-      onClick={(e) => {
-        e.preventDefault();
-        handleEditClick(note);
-      }}
-      className="bg-yellow-500 px-3 py-1 rounded"
-    >
-      Edit
-    </button>
+            <textarea
+              rows={6}
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Description"
+              value={form.description}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  description: e.target.value,
+                })
+              }
+            />
 
-    <button
-      onClick={(e) => {
-        e.preventDefault();
-        handleDelete(note);
-      }}
-      className="bg-red-600 px-3 py-1 rounded"
-    >
-      Delete
-    </button>
-  </div>
-)}
-            </Link>
-          ))}
+            <input
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Resource Link"
+              value={form.link}
+              onChange={(e) =>
+                setForm({ ...form, link: e.target.value })
+              }
+            />
+
+            {isEditing ? (
+              <button
+                onClick={handleUpdate}
+                className="bg-yellow-500 p-3 rounded-lg font-medium"
+              >
+                Update Note
+              </button>
+            ) : (
+              <button
+                onClick={handleCreate}
+                className="bg-green-600 p-3 rounded-lg font-medium"
+              >
+                Create Note
+              </button>
+            )}
+          </div>
         </div>
+      )}
+
+      {/* Notes List */}
+      <div className="space-y-4 md:space-y-5">
+        {notes.map((note) => (
+          <Link
+            key={note._id}
+            to={`/notes/${note.categorySlug}/${note.slug}`}
+            className="block bg-slate-900 border border-slate-800 rounded-2xl md:rounded-3xl p-4 md:p-6 hover:border-blue-500 transition-all duration-300 md:hover:-translate-y-1"
+          >
+            <h2 className="text-xl md:text-2xl font-semibold break-words">
+              {note.title}
+            </h2>
+
+            <p className="text-sm md:text-base text-slate-400 mt-2">
+              Open detailed notes →
+            </p>
+
+            {isAdmin && (
+              <div className="flex flex-wrap gap-2 md:gap-3 mt-4">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleEditClick(note);
+                  }}
+                  className="bg-yellow-500 px-3 py-1 rounded text-sm"
+                >
+                  Edit
+                </button>
+
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete(note);
+                  }}
+                  className="bg-red-600 px-3 py-1 rounded text-sm"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
+          </Link>
+        ))}
       </div>
     </div>
-  );
+  </div>
+);
 }

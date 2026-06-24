@@ -70,127 +70,151 @@ export default function ContactUs() {
   };
 
   return (
-    <section className="min-h-screen bg-slate-950 text-white py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        
-        <div className="text-center mb-12">
-          <span className="px-4 py-2 rounded-full bg-blue-500/20 text-blue-400">
-            Contact Me
-          </span>
-          <h1 className="text-5xl font-bold mt-6">
-  Get In Touch 👋
-</h1>
-<Helmet>
-  <title>Contact | CodeWithRahulKumawat</title>
-</Helmet>
-<p className="text-slate-400 mt-4 text-lg max-w-3xl mx-auto">
-  Have a question, need guidance, facing a course-related issue, or interested
-  in working together? I'd love to hear from you.
-</p>
+  <section className="min-h-screen overflow-x-hidden bg-slate-950 text-white py-10 md:py-20 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto">
 
-<p className="text-slate-400 mt-3 max-w-3xl mx-auto">
-  Reach me directly at{" "}
-  <span className="text-blue-400 font-medium">
-    rahul.kumawat.che15@itbhu.ac.in
-  </span>{" "}
-  or simply fill out the form below. I usually respond within 24 hours.
-</p>
-        </div>
+      {/* Header */}
+      <div className="text-center mb-8 md:mb-12">
 
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8">
-          {submitted ? (
-            <div className="text-center py-10">
-              <div className="text-6xl mb-4">🎉</div>
+        <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-blue-500/20 text-blue-400 text-xs md:text-sm">
+          Contact Me
+        </span>
 
-              <h2 className="text-3xl font-bold">
-                Message Sent!
-              </h2>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 md:mt-6">
+          Get In Touch 👋
+        </h1>
 
-              <p className="text-slate-400 mt-3">
-                Thanks for reaching out.I'll get back to you soon.
-              </p>
+        <Helmet>
+          <title>Contact | CodeWithRahulKumawat</title>
+        </Helmet>
+
+        <p className="text-slate-400 mt-4 text-sm md:text-lg max-w-3xl mx-auto px-2">
+          Have a question, need guidance, facing a course-related issue, or
+          interested in working together? I'd love to hear from you.
+        </p>
+
+        <p className="text-slate-400 mt-3 text-sm md:text-base max-w-3xl mx-auto px-2 break-words">
+          Reach me directly at{" "}
+          <span className="text-blue-400 font-medium break-all">
+            rahul.kumawat.che15@itbhu.ac.in
+          </span>{" "}
+          or simply fill out the form below. I usually respond within 24 hours.
+        </p>
+
+      </div>
+
+      {/* Form Card */}
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl md:rounded-3xl p-5 md:p-8">
+
+        {submitted ? (
+
+          <div className="text-center py-6 md:py-10">
+            <div className="text-5xl md:text-6xl mb-4">
+              🎉
             </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-              <div style={{ marginBottom: "15px" }}>
-             <input
+
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Message Sent!
+            </h2>
+
+            <p className="text-sm md:text-base text-slate-400 mt-3">
+              Thanks for reaching out. I'll get back to you soon.
+            </p>
+          </div>
+
+        ) : (
+
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5 md:space-y-6"
+          >
+
+            {/* Name */}
+            <div>
+              <input
                 type="text"
                 name="name"
                 placeholder="Your Name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-5 py-4 outline-none focus:border-blue-500"
+                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 md:px-5 py-3 md:py-4 outline-none focus:border-blue-500 text-sm md:text-base"
               />
-              {errors.name && (
-  <small style={{ color: "red" }}>
-    {errors.name}
-  </small>
-)}
-              </div>
-              
- <div style={{ marginBottom: "15px" }}>
-<input
-  type="text"
-  name="email"
-  placeholder="Your Email"
-  value={formData.email}
-  onChange={handleChange}
-  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-5 py-4 outline-none focus:border-blue-500"
-/>
 
-{errors.email && (
-  <small style={{ color: "red" }}>
-    {errors.email}
-  </small>
-)}
- </div>    
-   <div style={{ marginBottom: "15px" }}>
+              {errors.name && (
+                <small className="text-red-500 block mt-1">
+                  {errors.name}
+                </small>
+              )}
+            </div>
+
+            {/* Email */}
+            <div>
+              <input
+                type="text"
+                name="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 md:px-5 py-3 md:py-4 outline-none focus:border-blue-500 text-sm md:text-base"
+              />
+
+              {errors.email && (
+                <small className="text-red-500 block mt-1">
+                  {errors.email}
+                </small>
+              )}
+            </div>
+
+            {/* Subject */}
+            <div>
               <input
                 type="text"
                 name="subject"
-                placeholder="Subject ..."
+                placeholder="Subject..."
                 value={formData.subject}
                 onChange={handleChange}
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-5 py-4 outline-none focus:border-blue-500"
+                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 md:px-5 py-3 md:py-4 outline-none focus:border-blue-500 text-sm md:text-base"
               />
-              {errors.subject && (
-  <small style={{ color: "red" }}>
-    {errors.subject}
-  </small>
-)}
-              </div>
 
-              <div style={{ marginBottom: "15px" }}>
+              {errors.subject && (
+                <small className="text-red-500 block mt-1">
+                  {errors.subject}
+                </small>
+              )}
+            </div>
+
+            {/* Message */}
+            <div>
               <textarea
                 rows="6"
                 name="message"
                 placeholder="Your Message..."
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-5 py-4 outline-none focus:border-blue-500"
+                className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 md:px-5 py-3 md:py-4 outline-none focus:border-blue-500 text-sm md:text-base"
               />
-              {errors.message && (
-  <small style={{ color: "red" }}>
-    {errors.message}
-  </small>
-)}
-              </div>
-              
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-xl font-semibold transition"
-              >
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-            </form>
-          )}
-        </div>
+              {errors.message && (
+                <small className="text-red-500 block mt-1">
+                  {errors.message}
+                </small>
+              )}
+            </div>
+
+            {/* Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-blue-600 hover:bg-blue-700 py-3 md:py-4 rounded-xl font-semibold transition text-sm md:text-base"
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+
+          </form>
+        )}
       </div>
-    </section>
-  );
+
+    </div>
+  </section>
+);
 }

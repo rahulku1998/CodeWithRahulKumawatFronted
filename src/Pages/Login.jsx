@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom"
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 export default function Login() {
   const [data, setData] = useState({
     email: "",
     password: "",
   });
-
+const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -31,9 +33,10 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      alert("Login Successful");
+      toast.success("Login Successful");
+      navigate("/");
     } catch (error) {
-      alert(error.response?.data?.message || "Login Failed");
+     toast.error(error.response?.data?.message || "Login Failed");
     } finally {
       setLoading(false);
     }
@@ -41,9 +44,9 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-8">
+      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-5 sm:p-8">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-white">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">
             Welcome Back
           </h1>
           <p className="text-slate-400 mt-2">
@@ -63,7 +66,7 @@ export default function Login() {
               value={data.email}
               onChange={handleChange}
               placeholder="Enter your email"
-              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3.5 text-base bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -78,7 +81,7 @@ export default function Login() {
               value={data.password}
               onChange={handleChange}
               placeholder="Enter your password"
-              className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3.5 text-base bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -97,7 +100,7 @@ export default function Login() {
            <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition duration-200 disabled:opacity-50 cursor-pointer"
+            className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition duration-200 disabled:opacity-50 cursor-pointer"
           >
             {loading ? "Logging in..." : "Login"}
           </button>

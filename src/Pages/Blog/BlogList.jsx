@@ -122,30 +122,30 @@ const handleUpdate = async () => {
 
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-20 px-6">
+    <section className="min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-10 md:py-20 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <span className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm">
             {categorySlug.replace("-", " ").toUpperCase()}
           </span>
 
-          <h1 className="text-5xl md:text-6xl font-bold mt-6">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mt-4 md:mt-6">
             Latest
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               {" "}Blogs
             </span>
           </h1>
 
-          <p className="text-slate-400 mt-4">
+          <p className="text-slate-400 text-sm md:text-base mt-4 px-2">
             Explore all articles in this category.
           </p>
         </div>
 
         {isAdmin && (
-  <div className="bg-slate-900 p-6 rounded-2xl mb-10">
-    <h2 className="text-2xl font-bold mb-4">
+  <div className="bg-slate-900 p-4 md:p-6 rounded-2xl mb-10">
+    <h2 className="text-xl md:text-2xl font-bold mb-4">
       {isEditing ? "Update Blog" : "Create Blog"}
     </h2>
 
@@ -179,7 +179,7 @@ const handleUpdate = async () => {
       />
 
       <textarea
-        rows={8}
+        rows={6}
         className="bg-slate-800 p-3 rounded"
         placeholder="Blog Content"
         value={form.description}
@@ -211,7 +211,7 @@ const handleUpdate = async () => {
 )}
 
         {/* Blog Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {blogs.map((blog) => (
             <Link
               key={blog._id}
@@ -222,7 +222,7 @@ const handleUpdate = async () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl blur-xl opacity-0 group-hover:opacity-20 transition duration-500"></div>
 
               {/* Card */}
-              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-2">
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden hover:border-blue-500/40 transition-all duration-300 md:hover:-translate-y-2">
 
                 {/* Image */}
                 {blog.image && (
@@ -230,12 +230,12 @@ const handleUpdate = async () => {
                     <img
                       src={blog.image}
                       alt={blog.title}
-                      className="w-full h-60 object-cover group-hover:scale-110 transition duration-500"
+                      className="w-full h-48 md:h-60 object-cover group-hover:scale-110 transition duration-500"
                     />
                   </div>
                 )}
                  {isAdmin && (
-  <div className="flex gap-3 mt-4">
+  <div className="flex flex-wrap gap-2 p-4">
     <button
       onClick={(e) => {
         e.preventDefault();
@@ -258,21 +258,21 @@ const handleUpdate = async () => {
   </div>
 )}
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-4 md:p-6">
 
                   <span className="inline-block px-3 py-1 text-xs rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 mb-4">
                     {blog.category}
                   </span>
 
-                  <h2 className="text-2xl font-bold mb-3 line-clamp-2">
+                  <h2 className="text-xl md:text-2xl font-bold mb-3 line-clamp-2 break-words">
                     {blog.title}
                   </h2>
 
-                  <p className="text-slate-400 line-clamp-3 mb-5">
+                  <p className="text-sm md:text-base text-slate-400 line-clamp-3 mb-5 break-words">
                     {blog.description}
                   </p>
 
-                  <div className="flex justify-between items-center text-sm">
+                  <div className="flex flex-wrap justify-between items-center gap-2 text-xs md:text-sm">
                     <span className="text-slate-500">
                       {new Date(blog.createdAt).toLocaleDateString()}
                     </span>

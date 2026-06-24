@@ -135,170 +135,174 @@ const token = localStorage.getItem("token") || "";
   };
 
   return (
-    <section className="min-h-screen bg-slate-950 text-white p-8">
-      <div className="max-w-7xl mx-auto">
-        <Helmet>
-          <title>Courses | CodeWithRahulKumawat</title>
-        </Helmet>
+  <section className="min-h-screen overflow-x-hidden bg-slate-950 text-white py-10 md:py-16 px-4 sm:px-6">
+    <div className="max-w-7xl mx-auto">
 
-        <h4 className="text-4xl font-bold text-center mb-10 text-orange-400">
-          Learn With IIT Graduates - Curated Courses for Developers
-        </h4>
+      <Helmet>
+        <title>Courses | CodeWithRahulKumawat</title>
+      </Helmet>
 
-        {/* ================= ADMIN FORM ================= */}
-        {isAdmin && (
-          <div className="bg-slate-900 p-6 rounded-xl mb-10">
-            <h2 className="text-xl mb-4">
-              {isEditing ? "Update Course" : "Create Course"}
-            </h2>
+      {/* Heading */}
+      <h4 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-10 text-orange-400 leading-tight">
+        Learn With IIT Graduates - Curated Courses for Developers
+      </h4>
 
-            <div className="grid gap-3">
-              <input
-                className="p-2 bg-slate-800 rounded"
-                placeholder="Title"
-                value={form.title}
-                onChange={(e) =>
-                  setForm({ ...form, title: e.target.value })
-                }
-              />
+      {/* ================= ADMIN FORM ================= */}
+      {isAdmin && (
+        <div className="bg-slate-900 p-4 md:p-6 rounded-2xl md:rounded-3xl mb-8 md:mb-10">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">
+            {isEditing ? "Update Course" : "Create Course"}
+          </h2>
 
-              <input
-                className="p-2 bg-slate-800 rounded"
-                placeholder="Description"
-                value={form.description}
-                onChange={(e) =>
-                  setForm({ ...form, description: e.target.value })
-                }
-              />
+          <div className="grid gap-3">
 
-              <input
-                className="p-2 bg-slate-800 rounded"
-                placeholder="Category"
-                value={form.category}
-                onChange={(e) =>
-                  setForm({ ...form, category: e.target.value })
-                }
-              />
+            <input
+              className="p-3 bg-slate-800 rounded-lg"
+              placeholder="Title"
+              value={form.title}
+              onChange={(e) =>
+                setForm({ ...form, title: e.target.value })
+              }
+            />
 
-              <input
-                className="p-2 bg-slate-800 rounded"
-                placeholder="YouTube Link"
-                value={form.link}
-                onChange={(e) =>
-                  setForm({ ...form, link: e.target.value })
-                }
-              />
+            <input
+              className="p-3 bg-slate-800 rounded-lg"
+              placeholder="Description"
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+            />
 
-              {isEditing ? (
-                <button
-                  onClick={handleUpdate}
-                  className="bg-yellow-500 p-2 rounded"
-                >
-                  Update Course
-                </button>
-              ) : (
-                <button
-                  onClick={handleCreate}
-                  className="bg-green-600 p-2 rounded"
-                >
-                  Create Course
-                </button>
+            <input
+              className="p-3 bg-slate-800 rounded-lg"
+              placeholder="Category"
+              value={form.category}
+              onChange={(e) =>
+                setForm({ ...form, category: e.target.value })
+              }
+            />
+
+            <input
+              className="p-3 bg-slate-800 rounded-lg"
+              placeholder="YouTube Link"
+              value={form.link}
+              onChange={(e) =>
+                setForm({ ...form, link: e.target.value })
+              }
+            />
+
+            {isEditing ? (
+              <button
+                onClick={handleUpdate}
+                className="bg-yellow-500 p-3 rounded-lg font-medium"
+              >
+                Update Course
+              </button>
+            ) : (
+              <button
+                onClick={handleCreate}
+                className="bg-green-600 p-3 rounded-lg font-medium"
+              >
+                Create Course
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ================= CATEGORIES ================= */}
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 md:mb-10">
+        {categories.map((cat) => (
+          <button
+            key={cat.categorySlug}
+            onClick={() => {
+              setSelectedCategory(cat.categorySlug);
+              setSelectedCourse(null);
+            }}
+            className={`px-4 md:px-6 py-2 md:py-3 rounded-xl text-sm md:text-base transition ${
+              selectedCategory === cat.categorySlug
+                ? "bg-blue-600"
+                : "bg-slate-800 hover:bg-slate-700"
+            }`}
+          >
+            {cat.category}
+          </button>
+        ))}
+      </div>
+
+      {/* ================= COURSES ================= */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-8 md:mb-10">
+        {filteredCourses.map((course) => (
+          <div
+            key={course._id}
+            className="bg-slate-900 p-5 md:p-6 rounded-2xl border border-slate-800"
+          >
+            <h3 className="text-lg md:text-xl font-semibold break-words">
+              {course.title}
+            </h3>
+
+            <p className="text-gray-400 text-sm md:text-base mt-2 mb-4 line-clamp-3">
+              {course.description}
+            </p>
+
+            <div className="flex flex-wrap gap-2 md:gap-3">
+
+              <button
+                onClick={() => setSelectedCourse(course)}
+                className="bg-blue-600 px-3 py-2 rounded text-sm md:text-base"
+              >
+                Watch
+              </button>
+
+              {isAdmin && (
+                <>
+                  <button
+                    onClick={() => handleEditClick(course)}
+                    className="bg-yellow-500 px-3 py-2 rounded text-sm md:text-base"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      handleDelete(
+                        course.categorySlug,
+                        course.slug
+                      )
+                    }
+                    className="bg-red-600 px-3 py-2 rounded text-sm md:text-base"
+                  >
+                    Delete
+                  </button>
+                </>
               )}
             </div>
           </div>
-        )}
-
-        {/* ================= CATEGORIES ================= */}
-        <div className="flex flex-wrap gap-4 justify-center mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat.categorySlug}
-              onClick={() => {
-                setSelectedCategory(cat.categorySlug);
-                setSelectedCourse(null);
-              }}
-              className={`px-6 py-3 rounded-xl ${
-                selectedCategory === cat.categorySlug
-                  ? "bg-blue-600"
-                  : "bg-slate-800"
-              }`}
-            >
-              {cat.category}
-            </button>
-          ))}
-        </div>
-
-        {/* ================= COURSES ================= */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {filteredCourses.map((course) => (
-            <div
-              key={course._id}
-              className="bg-slate-900 p-6 rounded-xl border border-slate-800"
-            >
-              <h3 className="text-xl font-semibold">
-                {course.title}
-              </h3>
-
-              <p className="text-gray-400 text-sm mb-4">
-                {course.description}
-              </p>
-
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setSelectedCourse(course)}
-                  className="bg-blue-600 px-3 py-1 rounded"
-                >
-                  Watch
-                </button>
-
-                {/* ADMIN ONLY ACTIONS */}
-                {isAdmin && (
-                  <>
-                    <button
-                      onClick={() => handleEditClick(course)}
-                      className="bg-yellow-500 px-3 py-1 rounded"
-                    >
-                      Edit
-                    </button>
-
-                    <button
-                      onClick={() =>
-                        handleDelete(
-                          course.categorySlug,
-                          course.slug
-                        )
-                      }
-                      className="bg-red-600 px-3 py-1 rounded"
-                    >
-                      Delete
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ================= VIDEO ================= */}
-        {selectedCourse && (
-          <div className="bg-slate-900 p-6 rounded-2xl border">
-            <h2 className="text-2xl font-bold mb-4">
-              {selectedCourse.title}
-            </h2>
-
-            <iframe
-              className="w-full aspect-video rounded-xl"
-              src={getYoutubeEmbedUrl(selectedCourse.link)}
-              title={selectedCourse.title}
-              allowFullScreen
-            />
-
-            <p className="mt-4 text-gray-400">
-              {selectedCourse.description}
-            </p>
-          </div>
-        )}
+        ))}
       </div>
-    </section>
-  );
+
+      {/* ================= VIDEO ================= */}
+      {selectedCourse && (
+        <div className="bg-slate-900 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-slate-800">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 break-words">
+            {selectedCourse.title}
+          </h2>
+
+          <iframe
+            className="w-full aspect-video rounded-xl"
+            src={getYoutubeEmbedUrl(selectedCourse.link)}
+            title={selectedCourse.title}
+            allowFullScreen
+          />
+
+          <p className="mt-4 text-sm md:text-base text-gray-400 break-words">
+            {selectedCourse.description}
+          </p>
+        </div>
+      )}
+
+    </div>
+  </section>
+);
 }

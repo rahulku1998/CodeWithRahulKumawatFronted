@@ -27,35 +27,46 @@ export default function NotesCategories() {
       .catch(console.error);
   }, []);
 
-  return (
-    <div className="min-h-screen bg-slate-950 text-white py-16 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-12">
+return (
+  <div className="min-h-screen overflow-x-hidden bg-slate-950 text-white py-10 md:py-16 px-4 sm:px-6">
+    <div className="max-w-7xl mx-auto">
+
+      {/* Heading */}
+      <div className="text-center mb-8 md:mb-12">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
           Study Notes
         </h1>
-<Helmet>
-  <title>Download Notes | CodeWithRahulKumawat</title>
-</Helmet>
-        <div className="grid md:grid-cols-3 gap-6">
-          {categories.map((cat) => (
-            <Link
-              key={cat.categorySlug}
-              to={`/notes/${cat.categorySlug}`}
-              className="bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:border-blue-500 transition"
-            >
-              <div className="text-4xl mb-4">📚</div>
 
-              <h2 className="text-2xl font-bold">
-                {cat.category}
-              </h2>
-
-              <p className="text-slate-400 mt-2">
-                Explore notes from this category.
-              </p>
-            </Link>
-          ))}
-        </div>
+        <Helmet>
+          <title>Download Notes | CodeWithRahulKumawat</title>
+        </Helmet>
       </div>
+
+      {/* Categories */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        {categories.map((cat) => (
+          <Link
+            key={cat.categorySlug}
+            to={`/notes/${cat.categorySlug}`}
+            className="bg-slate-900 border border-slate-800 rounded-2xl md:rounded-3xl p-5 md:p-8 hover:border-blue-500 transition-all duration-300 md:hover:-translate-y-1"
+          >
+            <div className="text-3xl md:text-4xl mb-4">
+              📚
+            </div>
+
+            <h2 className="text-xl md:text-2xl font-bold break-words">
+              {cat.category}
+            </h2>
+
+            <p className="text-sm md:text-base text-slate-400 mt-2">
+              Explore notes from this category.
+            </p>
+          </Link>
+        ))}
+      </div>
+
     </div>
-  );
+  </div>
+);
+
 }

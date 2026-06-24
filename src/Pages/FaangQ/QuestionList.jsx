@@ -132,186 +132,201 @@ const handleUpdate = async () => {
 };
 
 
-  return (
-    <section className="min-h-screen bg-slate-950 text-white py-16 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-12">
-          <Link
-            to="/faang-questions"
-            className="text-blue-400 hover:text-blue-300"
-          >
-            ← Back to Categories
-          </Link>
+return (
+  <section className="min-h-screen overflow-x-hidden bg-slate-950 text-white py-10 md:py-16 px-4 sm:px-6">
+    <div className="max-w-6xl mx-auto">
 
-          <h1 className="text-4xl md:text-5xl font-bold mt-4 capitalize">
-            {categorySlug.replace(/-/g, " ")} Questions
-          </h1>
+      {/* Header */}
+      <div className="mb-8 md:mb-12">
+        <Link
+          to="/faang-questions"
+          className="inline-flex items-center text-sm md:text-base text-blue-400 hover:text-blue-300 transition"
+        >
+          ← Back to Categories
+        </Link>
 
-          <p className="text-slate-400 mt-3">
-            Practice top interview questions from this category.
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 capitalize break-words">
+          {categorySlug.replace(/-/g, " ")} Questions
+        </h1>
+
+        <p className="text-sm md:text-base text-slate-400 mt-3">
+          Practice top interview questions from this category.
+        </p>
+      </div>
+
+      {/* Admin Form */}
+      {isAdmin && (
+        <div className="bg-slate-900 p-4 md:p-6 rounded-2xl md:rounded-3xl mb-8 md:mb-10">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">
+            {isEditing ? "Update Question" : "Create Question"}
+          </h2>
+
+          <div className="grid gap-3">
+
+            <input
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Title"
+              value={form.title}
+              onChange={(e) =>
+                setForm({ ...form, title: e.target.value })
+              }
+            />
+
+            <input
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Category"
+              value={form.category}
+              onChange={(e) =>
+                setForm({ ...form, category: e.target.value })
+              }
+            />
+
+            <textarea
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Question"
+              rows={4}
+              value={form.question}
+              onChange={(e) =>
+                setForm({ ...form, question: e.target.value })
+              }
+            />
+
+            <textarea
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Answer"
+              rows={6}
+              value={form.answer}
+              onChange={(e) =>
+                setForm({ ...form, answer: e.target.value })
+              }
+            />
+
+            <input
+              className="bg-slate-800 p-3 rounded-lg"
+              placeholder="Resource Link"
+              value={form.link}
+              onChange={(e) =>
+                setForm({ ...form, link: e.target.value })
+              }
+            />
+
+            {isEditing ? (
+              <button
+                onClick={handleUpdate}
+                className="bg-yellow-500 p-3 rounded-lg font-medium"
+              >
+                Update Question
+              </button>
+            ) : (
+              <button
+                onClick={handleCreate}
+                className="bg-green-600 p-3 rounded-lg font-medium"
+              >
+                Create Question
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Loading */}
+      {loading ? (
+        <div className="space-y-4 md:space-y-5">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="h-20 md:h-24 rounded-2xl bg-slate-800 animate-pulse"
+            />
+          ))}
+        </div>
+      ) : questions.length === 0 ? (
+
+        <div className="text-center py-16 md:py-20">
+          <h2 className="text-xl md:text-2xl font-semibold">
+            No Questions Found
+          </h2>
+
+          <p className="text-slate-400 mt-2 text-sm md:text-base">
+            This category doesn't have any questions yet.
           </p>
         </div>
 
-
-       {isAdmin && (
-  <div className="bg-slate-900 p-6 rounded-2xl mb-10">
-    <h2 className="text-2xl font-bold mb-4">
-      {isEditing ? "Update Question" : "Create Question"}
-    </h2>
-
-    <div className="grid gap-3">
-      <input
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Title"
-        value={form.title}
-        onChange={(e) =>
-          setForm({ ...form, title: e.target.value })
-        }
-      />
-
-      <input
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Category"
-        value={form.category}
-        onChange={(e) =>
-          setForm({ ...form, category: e.target.value })
-        }
-      />
-
-      <textarea
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Question"
-        rows={4}
-        value={form.question}
-        onChange={(e) =>
-          setForm({ ...form, question: e.target.value })
-        }
-      />
-
-      <textarea
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Answer"
-        rows={6}
-        value={form.answer}
-        onChange={(e) =>
-          setForm({ ...form, answer: e.target.value })
-        }
-      />
-
-      <input
-        className="bg-slate-800 p-3 rounded"
-        placeholder="Resource Link"
-        value={form.link}
-        onChange={(e) =>
-          setForm({ ...form, link: e.target.value })
-        }
-      />
-
-      {isEditing ? (
-        <button
-          onClick={handleUpdate}
-          className="bg-yellow-500 p-3 rounded"
-        >
-          Update Question
-        </button>
       ) : (
-        <button
-          onClick={handleCreate}
-          className="bg-green-600 p-3 rounded"
-        >
-          Create Question
-        </button>
-      )}
-    </div>
-  </div>
-)}
-    
 
+        <div className="space-y-4 md:space-y-5">
+          {questions.map((question, index) => (
+            <Link
+              key={question._id}
+              to={`/faang-questions/${question.categorySlug}/${question.slug}`}
+              className="block group"
+            >
+              <div className="rounded-2xl md:rounded-3xl border border-slate-800 bg-slate-900 p-4 md:p-6 hover:border-blue-500 transition-all duration-300 md:hover:-translate-y-1">
 
+                <div className="flex flex-col sm:flex-row items-start gap-4">
 
-        {/* Loading */}
-        {loading ? (
-          <div className="space-y-5">
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="h-24 rounded-2xl bg-slate-800 animate-pulse"
-              />
-            ))}
-          </div>
-        ) : questions.length === 0 ? (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-semibold">
-              No Questions Found
-            </h2>
-            <p className="text-slate-400 mt-2">
-              This category doesn't have any questions yet.
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-5">
-            {questions.map((question, index) => (
-              <Link
-                key={question._id}
-                to={`/faang-questions/${question.categorySlug}/${question.slug}`}
-                className="block group"
-              >
-                <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 hover:border-blue-500 transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">
-                      {index + 1}
+                  {/* Question Number */}
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold shrink-0">
+                    {index + 1}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+
+                    <h2 className="text-lg md:text-xl font-semibold break-words group-hover:text-blue-400 transition">
+                      {question.title}
+                    </h2>
+
+                    <p className="text-sm md:text-base text-slate-400 mt-2 line-clamp-2 break-words">
+                      {question.question}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap items-center gap-3">
+
+                      <span className="px-3 py-1 rounded-full bg-slate-800 text-xs md:text-sm text-slate-300">
+                        {question.category}
+                      </span>
+
+                      <span className="text-blue-400 text-xs md:text-sm font-medium">
+                        View Solution →
+                      </span>
+
+                      {isAdmin && (
+                        <div className="flex flex-wrap gap-2 md:gap-3">
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleEditClick(question);
+                            }}
+                            className="bg-yellow-500 px-3 py-1 rounded text-sm"
+                          >
+                            Edit
+                          </button>
+
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleDelete(question);
+                            }}
+                            className="bg-red-600 px-3 py-1 rounded text-sm"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+
                     </div>
 
-                    <div className="flex-1">
-                      <h2 className="text-xl font-semibold group-hover:text-blue-400 transition">
-                        {question.title}
-                      </h2>
-
-                      <p className="text-slate-400 mt-2 line-clamp-2">
-                        {question.question}
-                      </p>
-
-                      <div className="mt-4 flex items-center gap-3">
-                        <span className="px-3 py-1 rounded-full bg-slate-800 text-sm text-slate-300">
-                          {question.category}
-                        </span>
-
-                        <span className="text-blue-400 text-sm font-medium">
-                          View Solution →
-                        </span>
-                        {isAdmin && (
-  <div className="flex gap-3 mt-4">
-    <button
-      onClick={(e) => {
-        e.preventDefault();
-        handleEditClick(question);
-      }}
-      className="bg-yellow-500 px-3 py-1 rounded"
-    >
-      Edit
-    </button>
-
-    <button
-      onClick={(e) => {
-        e.preventDefault();
-        handleDelete(question);
-      }}
-      className="bg-red-600 px-3 py-1 rounded"
-    >
-      Delete
-    </button>
-  </div>
-)}
-                      </div>
-                    </div>
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
-  );
+
+              </div>
+            </Link>
+          ))}
+        </div>
+
+      )}
+    </div>
+  </section>
+);
+
 }
