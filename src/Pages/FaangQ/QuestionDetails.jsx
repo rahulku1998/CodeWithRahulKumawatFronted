@@ -72,6 +72,29 @@ return (
         </div>
       </div>
 
+
+{/* Resource Link */}
+      {question.link && (
+        <div className="mt-6 md:mt-8 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/20 rounded-2xl md:rounded-3xl p-5 md:p-8">
+          <h3 className="text-lg md:text-xl font-bold mb-3">
+            🚀 Practice on LeetCode / GeeksforGeeks / HackerRank
+          </h3>
+
+          <p className="text-sm md:text-base text-slate-300 mb-5">
+             Strengthen your problem-solving skills by solving this question yourself before reviewing the solution.
+          </p>
+
+          <a
+            href={question.link}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-green-600 text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
+          >
+            🔗 Start Practicing →
+          </a>
+        </div>
+      )}
+
       {/* Solution Card */}
       <div className="mt-6 md:mt-8 bg-slate-900 border border-slate-800 rounded-2xl md:rounded-3xl p-5 md:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
@@ -92,27 +115,10 @@ return (
         </div>
       </div>
 
-      {/* Resource Link */}
-      {question.link && (
-        <div className="mt-6 md:mt-8 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/20 rounded-2xl md:rounded-3xl p-5 md:p-8">
-          <h3 className="text-lg md:text-xl font-bold mb-3">
-            🚀 Additional Resource
-          </h3>
+      
 
-          <p className="text-sm md:text-base text-slate-300 mb-5">
-            Watch detailed explanation or read the article.
-          </p>
-
-          <a
-            href={question.link}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-white text-black px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
-          >
-            Open Resource →
-          </a>
-        </div>
-      )}
+      
+      
 
       {/* Bottom CTA */}
       <div className="mt-10 md:mt-12 text-center border-t border-slate-800 pt-8 md:pt-10">

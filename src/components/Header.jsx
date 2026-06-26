@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
-
+import logo from "../assets/logo.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -38,11 +38,20 @@ export default function Header() {
 
         {/* Logo */}
         <Link
-          to="/"
-          className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600 truncate"
-        >
-          CodeWithRahulKumawat
-        </Link>
+  to="/"
+  className="flex items-center gap-2 sm:gap-3"
+>
+   <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600 whitespace-nowrap">
+    CodeWithRahulKumawat
+  </span>
+  <img
+    src={logo}
+    alt="Code With Rahul Kumawat"
+    className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+  />
+
+  
+</Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
