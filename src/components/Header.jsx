@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
-const [showMore, setShowMore] = useState(false);
+
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -29,6 +29,7 @@ const moreLinks = [
   { name: "Sign Up", path: "/signup" },
 ];
 export default function Header() {
+   const [showMore, setShowMore] = useState(false);
  return (
   <>
     {/* Desktop Header */}
