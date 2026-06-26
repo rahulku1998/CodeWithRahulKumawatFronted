@@ -1,4 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+const [showMore, setShowMore] = useState(false);
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -10,6 +12,22 @@ const navLinks = [
   { name: "Contact", path: "/contacts" },
 ];
 
+
+const mobileNavLinks = [
+  { name: "Home", path: "/" },
+  { name: "Courses", path: "/courses" },
+  { name: "Notes", path: "/notes" },
+  { name: "FAANG Questions", path: "/faang-questions" },
+];
+
+
+const moreLinks = [
+  { name: "Blog", path: "/blogs" },
+  { name: "Freelance Work", path: "/contact" },
+  { name: "Contact", path: "/contacts" },
+  { name: "Login", path: "/login" },
+  { name: "Sign Up", path: "/signup" },
+];
 export default function Header() {
  return (
   <>
@@ -63,26 +81,52 @@ export default function Header() {
       </div>
     </header>
 
+
+
     {/* Mobile Bottom Navigation */}
     <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-50">
 
       <div className="grid grid-cols-5 h-16">
 
-        {navLinks.slice(0, 5).map((link) => (
-          <NavLink
-            key={link.path}
-            to={link.path}
-            className={({ isActive }) =>
-              `flex flex-col items-center justify-center text-xs ${
-                isActive
-                  ? "text-blue-600"
-                  : "text-gray-600"
-              }`
-            }
-          >
-            {link.name}
-          </NavLink>
-        ))}
+        {mobileNavLinks.map((link) => (
+      <NavLink
+        key={link.path}
+        to={link.path}
+        className={({ isActive }) =>
+          `flex flex-col items-center justify-center text-xs ${
+            isActive ? "text-blue-600" : "text-gray-600"
+          }`
+        }
+      >
+        {link.name}
+      </NavLink>
+    ))}
+
+    <button
+      onClick={() => setShowMore(!showMore)}
+      className="flex flex-col items-center justify-center text-xs text-gray-600"
+    >
+      ☰
+      <span>More</span>
+    </button>
+  
+  
+{showMore && (
+  <div className="md:hidden fixed bottom-16 left-0 right-0 bg-white border-t shadow-xl rounded-t-2xl p-4 z-40">
+
+    {moreLinks.map((link) => (
+      <NavLink
+        key={link.path}
+        to={link.path}
+        onClick={() => setShowMore(false)}
+        className="block py-3 border-b last:border-b-0"
+      >
+        {link.name}
+      </NavLink>
+    ))}
+
+  </div>
+)}
 
       </div>
     </div>
