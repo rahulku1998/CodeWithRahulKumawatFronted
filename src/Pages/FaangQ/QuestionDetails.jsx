@@ -12,6 +12,7 @@ export default function QuestionDetails() {
     axios
       .get(`${API_URL}/faangqs/${categorySlug}/${slug}`)
       .then((res) => {
+         console.log(res.data); 
         setQuestion(res.data);
       })
       .catch(console.error)
@@ -75,12 +76,12 @@ return (
 
 {/* Resource Link */}
       {question.link && (
-        <div className="mt-6 md:mt-8 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/20 rounded-2xl md:rounded-3xl p-5 md:p-8">
+        <div className="mt-6 md:mt-8 bg-blue-600 hover:bg-blue-700  border border-blue-500/20 rounded-2xl md:rounded-3xl p-5 md:p-8">
           <h3 className="text-lg md:text-xl font-bold mb-3">
             🚀 Practice on LeetCode / GeeksforGeeks / HackerRank
           </h3>
 
-          <p className="text-sm md:text-base text-slate-300 mb-5">
+          <p className="text-sm md:text-base text-slate-100 mb-5">
              Strengthen your problem-solving skills by solving this question yourself before reviewing the solution.
           </p>
 
