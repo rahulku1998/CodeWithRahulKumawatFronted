@@ -142,10 +142,38 @@ const handleUpdate = async () => {
       </h1>
 
       <Helmet>
-        <title>
-          Notes List | CodeWithRahulKumawat
-        </title>
-      </Helmet>
+  <title>
+    {categorySlug.replace(/-/g, " ")} Notes | CodeWithRahulKumawat
+  </title>
+
+  <meta
+    name="description"
+    content={`Explore ${categorySlug.replace(/-/g, " ")} notes with detailed explanations and examples.`}
+  />
+
+  <link
+    rel="canonical"
+    href={`https://www.codewithrahulkumawat.com/notes/${categorySlug}`}
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content={`${categorySlug.replace(/-/g, " ")} Notes`}
+  />
+
+  <meta
+    property="og:description"
+    content={`Learn ${categorySlug.replace(/-/g, " ")} with structured notes.`}
+  />
+
+  <meta
+    property="og:url"
+    content={`https://www.codewithrahulkumawat.com/notes/${categorySlug}`}
+  />
+
+  <meta property="og:type" content="website" />
+</Helmet>
 
       {/* Admin Form */}
       {isAdmin && (

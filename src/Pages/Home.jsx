@@ -15,6 +15,20 @@ export default function Home() {
 
     <Helmet>
       <title>Home | CodeWithRahulKumawat</title>
+      <meta
+    name="description"
+    content="Master Data Structures & Algorithms, MERN Stack, System Design and Coding Interviews with Rahul Kumawat."
+  />
+
+  <meta
+    name="keywords"
+    content="DSA, MERN, React, Node.js, Java, C++, Coding Interview, LeetCode, System Design"
+  />
+
+  <link
+    rel="canonical"
+    href="https://www.codewithrahulkumawat.com"
+  />
     </Helmet>
 
     {/* Hero */}

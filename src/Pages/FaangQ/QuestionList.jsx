@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
-
+import { Helmet } from "react-helmet-async";
 export default function QuestionList() {
   const { categorySlug } = useParams();
 
@@ -134,6 +134,41 @@ const handleUpdate = async () => {
 
 return (
   <section className="min-h-screen overflow-x-hidden bg-slate-950 text-white py-10 md:py-16 px-4 sm:px-6">
+
+    <Helmet>
+  <title>
+    {categorySlug.replace(/-/g, " ")} FAANG Questions | CodeWithRahulKumawat
+  </title>
+
+  <meta
+    name="description"
+    content={`Practice ${categorySlug.replace(/-/g, " ")} FAANG interview questions with solutions, explanations and coding patterns.`}
+  />
+
+  <link
+    rel="canonical"
+    href={`https://www.codewithrahulkumawat.com/faang-questions/${categorySlug}`}
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content={`${categorySlug.replace(/-/g, " ")} FAANG Questions`}
+  />
+
+  <meta
+    property="og:description"
+    content={`Top ${categorySlug.replace(/-/g, " ")} interview questions with solutions.`}
+  />
+
+  <meta
+    property="og:url"
+    content={`https://www.codewithrahulkumawat.com/faang-questions/${categorySlug}`}
+  />
+
+  <meta property="og:type" content="website" />
+</Helmet>
+
     <div className="max-w-6xl mx-auto">
 
       {/* Header */}

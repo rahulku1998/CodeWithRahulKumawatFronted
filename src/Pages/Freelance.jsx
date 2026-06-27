@@ -2,6 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import {Helmet} from "react-helmet-async";
 const API_URL = import.meta.env.VITE_API_URL;
+import SEO from "../components/SEO";
+
+
+
 export default function Freelance() {
   const [mode, setMode] = useState("freelance");
   const [submitted, setSubmitted] = useState(false);
@@ -93,10 +97,12 @@ export default function Freelance() {
     <section className="min-h-screen bg-slate-950 text-white py-20 px-6">
       <div className="max-w-5xl mx-auto">
   
-     <Helmet>
-    <title>Freelance | Interview | CodeWithRahulKumawat</title>
-    </Helmet>
-
+     
+       <SEO
+title="Hire Me for Freelance Work | MERN Developer"
+description="Available for freelance web development projects using MERN stack."
+url="https://codewithrahulkumawat.com/contact"
+/>
 
         {/* Header */}
         <div className="text-center mb-12">

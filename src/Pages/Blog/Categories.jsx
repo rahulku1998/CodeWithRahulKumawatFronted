@@ -28,6 +28,42 @@ export default function Categories() {
 
   return (
   <section className="min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-10 md:py-20 px-4 md:px-6">
+
+       <Helmet>
+  <title>
+    Blog Categories | DSA, React, Java, System Design | CodeWithRahulKumawat
+  </title>
+
+  <meta
+    name="description"
+    content="Explore programming blogs on DSA, React, Java, System Design and Web Development. Learn from structured tutorials and articles."
+  />
+
+  <link
+    rel="canonical"
+    href="https://www.codewithrahulkumawat.com/blogs"
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content="Programming Blogs Categories"
+  />
+
+  <meta
+    property="og:description"
+    content="Learn DSA, React, Java and more through structured blogs."
+  />
+
+  <meta
+    property="og:url"
+    content="https://www.codewithrahulkumawat.com/blogs"
+  />
+
+  <meta property="og:type" content="website" />
+</Helmet>
+
+
     <div className="max-w-7xl mx-auto">
       
       {/* Heading */}

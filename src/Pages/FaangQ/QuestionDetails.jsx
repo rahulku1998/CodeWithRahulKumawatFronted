@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const API_URL = import.meta.env.VITE_API_URL;
 export default function QuestionDetails() {
   const { categorySlug, slug } = useParams();
@@ -41,6 +42,46 @@ export default function QuestionDetails() {
   }
 return (
   <section className="min-h-screen overflow-x-hidden bg-slate-950 text-white py-10 md:py-16 px-4 sm:px-6">
+
+    <Helmet>
+  <title>
+    {question.title} | FAANG Interview Question | CodeWithRahulKumawat
+  </title>
+
+  <meta
+    name="description"
+    content={
+      question.question?.slice(0, 160) ||
+      "Practice FAANG interview coding questions with detailed solutions."
+    }
+  />
+
+  <link
+    rel="canonical"
+    href={`https://www.codewithrahulkumawat.com/faang-questions/${categorySlug}/${slug}`}
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content={question.title}
+  />
+
+  <meta
+    property="og:description"
+    content={
+      question.question?.slice(0, 160)
+    }
+  />
+
+  <meta
+    property="og:url"
+    content={`https://www.codewithrahulkumawat.com/faang-questions/${categorySlug}/${slug}`}
+  />
+
+  <meta property="og:type" content="article" />
+</Helmet>
+
     <div className="max-w-5xl mx-auto">
 
       {/* Back Button */}

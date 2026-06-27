@@ -44,10 +44,38 @@ return (
         </h1>
 
         <Helmet>
-          <title>
-            Practice Questions | CodeWithRahulKumawat
-          </title>
-        </Helmet>
+  <title>
+    FAANG Interview Questions | Coding Practice | CodeWithRahulKumawat
+  </title>
+
+  <meta
+    name="description"
+    content="Practice FAANG interview questions categorized by DSA topics, system design and coding rounds. Improve your problem solving skills."
+  />
+
+  <link
+    rel="canonical"
+    href="https://www.codewithrahulkumawat.com/faang-questions"
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content="FAANG Interview Questions Practice"
+  />
+
+  <meta
+    property="og:description"
+    content="Top FAANG coding interview questions categorized by topic."
+  />
+
+  <meta
+    property="og:url"
+    content="https://www.codewithrahulkumawat.com/faang-questions"
+  />
+
+  <meta property="og:type" content="website" />
+</Helmet>
 
         <p className="mt-4 text-sm md:text-base text-slate-400 max-w-2xl mx-auto px-2">
           Practice the most frequently asked coding interview questions

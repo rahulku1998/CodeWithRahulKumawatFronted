@@ -39,6 +39,15 @@ return (
 
         <Helmet>
           <title>Download Notes | CodeWithRahulKumawat</title>
+          <meta
+    name="description"
+    content={`Explore ${categories.length}+ programming notes categories for DSA, Web Development and System Design.`}
+  />
+
+  <link
+    rel="canonical"
+    href="https://www.codewithrahulkumawat.com/notes"
+  />
         </Helmet>
       </div>
 

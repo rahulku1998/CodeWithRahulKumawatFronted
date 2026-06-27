@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 const API_URL = import.meta.env.VITE_API_URL;
 export default function BlogList() {
   const { categorySlug } = useParams();
@@ -123,6 +124,44 @@ const handleUpdate = async () => {
 
   return (
     <section className="min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-10 md:py-20 px-4 md:px-6">
+
+
+<Helmet>
+  <title>
+    {categorySlug.replace(/-/g, " ")} Blogs | CodeWithRahulKumawat
+  </title>
+
+  <meta
+    name="description"
+    content={`Explore ${categorySlug.replace(/-/g, " ")} blogs with in-depth articles, tutorials and real-world examples.`}
+  />
+
+  <link
+    rel="canonical"
+    href={`https://www.codewithrahulkumawat.com/blogs/${categorySlug}`}
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content={`${categorySlug.replace(/-/g, " ")} Blogs`}
+  />
+
+  <meta
+    property="og:description"
+    content={`Read ${categorySlug.replace(/-/g, " ")} blogs and tutorials.`}
+  />
+
+  <meta
+    property="og:url"
+    content={`https://www.codewithrahulkumawat.com/blogs/${categorySlug}`}
+  />
+
+  <meta property="og:type" content="website" />
+</Helmet>
+
+
+
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}

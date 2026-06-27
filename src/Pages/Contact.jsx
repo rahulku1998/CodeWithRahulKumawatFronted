@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 const API_URL = import.meta.env.VITE_API_URL;
+import SEO from "../components/SEO";
+
 export default function ContactUs() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -84,9 +86,12 @@ export default function ContactUs() {
           Get In Touch 👋
         </h1>
 
-        <Helmet>
-          <title>Contact | CodeWithRahulKumawat</title>
-        </Helmet>
+        
+        <SEO
+title="Contact | CodeWithRahulkumawat"
+description="Get in touch for doubts, projects and collaboration."
+url="https://codewithrahulkumawat.com/contacts"
+/>
 
         <p className="text-slate-400 mt-4 text-sm md:text-lg max-w-3xl mx-auto px-2">
           Have a question, need guidance, facing a course-related issue, or

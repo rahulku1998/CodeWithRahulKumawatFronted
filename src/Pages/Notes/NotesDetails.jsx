@@ -45,10 +45,36 @@ export default function NotesDetails() {
       </h1>
 
       <Helmet>
-        <title>
-          Detailed Notes | CodeWithRahulKumawat
-        </title>
-      </Helmet>
+  <title>{note.title} | CodeWithRahulKumawat</title>
+
+  <meta
+    name="description"
+    content={note.description}
+  />
+
+  <link
+    rel="canonical"
+    href={`https://www.codewithrahulkumawat.com/notes/${categorySlug}/${slug}`}
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content={note.title}
+  />
+
+  <meta
+    property="og:description"
+    content={note.description}
+  />
+
+  <meta
+    property="og:url"
+    content={`https://www.codewithrahulkumawat.com/notes/${categorySlug}/${slug}`}
+  />
+
+  <meta property="og:type" content="article" />
+</Helmet>
 
       {/* Notes Content */}
       <div className="mt-6 md:mt-8 bg-slate-900 border border-slate-800 rounded-2xl md:rounded-3xl p-5 md:p-8">

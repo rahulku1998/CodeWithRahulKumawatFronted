@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import { Helmet } from "react-helmet-async";
 
 export default function BlogDetails() {
   const { categorySlug, slug } = useParams();
@@ -27,6 +27,63 @@ const API_URL = import.meta.env.VITE_API_URL;
   return (
     <section className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white">
       
+      <Helmet>
+  <title>
+    {blog.title} | Blog | CodeWithRahulKumawat
+  </title>
+
+  <meta
+    name="description"
+    content={
+      blog.description
+        ?.replace(/<[^>]*>/g, "")
+        .slice(0, 160)
+    }
+  />
+
+  <link
+    rel="canonical"
+    href={`https://www.codewithrahulkumawat.com/blogs/${categorySlug}/${slug}`}
+  />
+
+  {/* Open Graph */}
+  <meta
+    property="og:title"
+    content={blog.title}
+  />
+
+  <meta
+    property="og:description"
+    content={
+      blog.description
+        ?.replace(/<[^>]*>/g, "")
+        .slice(0, 160)
+    }
+  />
+
+  <meta
+    property="og:image"
+    content={blog.image}
+  />
+
+  <meta
+    property="og:url"
+    content={`https://www.codewithrahulkumawat.com/blogs/${categorySlug}/${slug}`}
+  />
+
+  <meta property="og:type" content="article" />
+
+  {/* Twitter */}
+  <meta name="twitter:card" content="summary_large_image" />
+</Helmet>
+
+
+
+
+
+
+
+
       {/* Hero Section */}
       <div className="relative h-[50vh] md:h-[70vh] overflow-hidden">
         {blog.image && (
